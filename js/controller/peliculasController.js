@@ -97,13 +97,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 `;
 
                 tdBtns.querySelector(".edit-btn").addEventListener("click", async () => {
+                    //Convertir tipo de fecha para que lo pueda leer el update
+                    const fecha = new Date(pel.fecha_creacion);
+                    const fechaFormateada = fecha.toISOString().split("T")[0];
+
                     form.peliculaId.value = pel.id;
                     form.peliculaTitulo.value = pel.titulo;
                     form.peliculaDirector.value = pel.director;
                     form.peliculaGenero.value = pel.genero;
                     form.peliculaEstreno.value = pel.anioEstreno;
                     form.peliculaDuracion.value = pel.duracion;
-                    form.peliculaFecha.value = pel.fecha_creacion;
+                    form.peliculaFecha.value = fechaFormateada;
                     lbModal.textContent = "Editar Película";
                     await loadPeliculas();
                     modal.show();
