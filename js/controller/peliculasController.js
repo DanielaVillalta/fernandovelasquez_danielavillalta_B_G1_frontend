@@ -63,6 +63,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             peliculas.forEach((pel) => {
+                const fecha = new Date(pel.fecha_creacion);
+                const fechaFormateada = fecha.toISOString().split("T")[0];
+
                 const tr = document.createElement("tr");
 
                 const tdId = document.createElement("td");
@@ -84,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 tdDuracion.textContent = pel.duracion;
 
                 const tdFecha = document.createElement("td");
-                tdFecha.textContent = pel.fecha_creacion;
+                tdFecha.textContent = fechaFormateada;
 
                 const tdBtns = document.createElement("td");
                 tdBtns.innerHTML = `
