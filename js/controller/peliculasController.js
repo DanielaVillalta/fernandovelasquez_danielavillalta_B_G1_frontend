@@ -1,9 +1,8 @@
 import {
     getPeliculas,
-    newPelicula,
+    createPelicula,
     updatePelicula,
-    deletePelicula,
-    createPelicula
+    deletePelicula
 } from "../service/peliculasService.js"
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -65,22 +64,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 tdId.textContent = pel.idPelicula;
 
                 const tdTitulo = document.createElement("td");
-                tdId.textContent = pel.tituloPelicula;
+                tdTitulo.textContent = pel.tituloPelicula;
 
                 const tdDirector = document.createElement("td");
-                tdId.textContent = pel.directorPelicula;
+                tdDirector.textContent = pel.directorPelicula;
 
                 const tdGenero = document.createElement("td");
-                tdId.textContent = pel.generoPelicula;
+                tdGenero.textContent = pel.generoPelicula;
 
                 const tdEstreno = document.createElement("td");
-                tdId.textContent = pel.estrenoPelicula;
+                tdEstreno.textContent = pel.estrenoPelicula;
                 
                 const tdDuracion = document.createElement("td");
-                tdId.textContent = pel.duracionPelicula;
+                tdDuracion.textContent = pel.duracionPelicula;
 
                 const tdFecha = document.createElement("td");
-                tdId.textContent = pel.fechaPelicula;
+                tdFecha.textContent = pel.fechaPelicula;
 
                 const tdBtns = document.createElement("td");
                 tdBtns.innerHTML = `
@@ -90,8 +89,40 @@ document.addEventListener("DOMContentLoaded", () => {
                     <button class="btn btn-sm btn-outline-danger delete-btn">
                         <i class="bi bi-trash"></i>
                     </button>
-                `
-            })
+                `;
+
+                tdBtns.querySelector(".edit-btn").addEventListener("click", async () => {
+                    form.peliculaId.value = pel.idPelicula;
+                    form.peliculaTitulo.value = pel.tituloPelicula;
+                    form.peliculaDirector.value = pel.directorPelicula;
+                    form.peliculaGenero.value = pel.generoPelicula;
+                    form.peliculaEstreno.value = pel.estrenoPelicula;
+                    form.peliculaDuracion.value = pel.duracionPelicula;
+                    form.peliculaCreacion.value = pel.fechaPelicula;
+                    lbModal.textContent = "Editar Película";
+                    await loadPeliculas();
+                });
+
+                tdBtns.querySelector(".delete-btn").addEventListener("click", async () => {
+                    if(confirm("¿Desea eliminar la película?")) {
+                        await deletePelicula(pel.idPelicula);
+                        await loadPeliculas();
+                    }
+                })
+
+                tr.appendChild(tdId);
+                tr.appendChild(tdTitulo);
+                tr.appendChild(tdDirector);
+                tr.appendChild(tdGenero);
+                tr.appendChild(tdEstreno);
+                tr.appendChild(tdDuracion);
+                tr.appendChild(tdFecha);
+                tr.appendChild(tdBtns);
+
+                tableBody.appendChild(tr);
+            });
+        } catch (err) {
+            console.error("Error cargando las películas: ", err);
         }
     }
-})
+});

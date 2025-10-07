@@ -1,7 +1,7 @@
-const API_URL="http://8080/api/movies";
+const API_URL="http://10.10.3.211/apiPeliculas";
 
 export async function getPeliculas() {
-    const res = await fetch(`${API_URL}/getDataPeliculas`);
+    const res = await fetch(`${API_URL}/consultarPeliculas`);
     return res.json();
 }
 

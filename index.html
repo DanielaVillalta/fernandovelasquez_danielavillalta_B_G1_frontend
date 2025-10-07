@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+<body style="background-color: aliceblue;">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Películas</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -52,13 +52,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <td colspan="5">Cargando...</td>
+                    <td colspan="8">Cargando...</td>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <div class="modal-fade" id="peliculaModal" tabindex="-1" aria-labelledby="peliculaModalLabel" aria-hidden="true">
+    <div class="modal-fade" id="peliculaModal" tabindex="-1" aria-labelledby="peliculaModalLabel" aria-hidden="true" style="opacity: 0;">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content p-3">
                 <div class="modal-header border-0">
@@ -94,7 +94,7 @@
                 </form>
                 <div class="modal-footer border-0">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-success" id="savePelicula">Guardar</button>
+                    <button type="submit" class="btn btn-success mx-2" id="savePelicula">Guardar</button>
                 </div>
             </div>
         </div>
