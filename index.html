@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Películas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Películas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Lista de películas</h2>
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#peliculaModal" id="btnAddPelicula">
+                <i class="bi bi-plus-lg"></i> Agregar
+            </button>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle" id="peliculasTable">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Título</th>
+                        <th scope="col">Director</th>
+                        <th scope="col">Género</th>
+                        <th scope="col">Año de estreno</th>
+                        <th scope="col">Duración (min)</th>
+                        <th scope="col">Fecha de creación</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <td colspan="5">Cargando...</td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal-fade" id="peliculaModal" tabindex="-1" aria-labelledby="peliculaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-3">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="peliculaModalLabel">Agregar Película</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <form id="peliculaForm">
+                    <input type="hidden" id="peliculaId">
+                    <div class="mb-3">
+                        <label for="peliculaTitulo" class="form-label">Título <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="peliculaTitulo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="peliculaDirector" class="form-label">Director <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="peliculaDirector">
+                    </div>
+                    <div class="mb-3">
+                        <label for="peliculaGenero" class="form-label">Género <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="peliculaGenero">
+                    </div>
+                    <div class="mb-3">
+                        <label for="peliculaEstreno" class="form-label">Año de estreno <span style="color: red;">*</span></label>
+                        <input type="number" class="form-control" id="peliculaEstreno">
+                    </div>
+                    <div class="mb-3">
+                        <label for="peliculaDuracion" class="form-label">Duración (min) <span style="color: red;">*</span></label>
+                        <input type="number" class="form-control" id="peliculaDuracion">
+                    </div>
+                    <div class="mb-3">
+                        <label for="peliculaFecha" class="form-label">Fecha de creación <span style="color: red;">*</span></label>
+                        <input type="date" class="form-control" id="peliculaFecha">
+                    </div>
+                </form>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success" id="savePelicula">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+        <script type="module" src="js/controller/peliculasController.js"></script>
+</body>
+
+</html>
