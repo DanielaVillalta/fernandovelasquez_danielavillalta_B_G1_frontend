@@ -1,4 +1,4 @@
-const API_URL="http://10.10.3.211/apiPeliculas";
+const API_URL="http://localhost:8080/apiPeliculas";
 
 export async function getPeliculas() {
     const res = await fetch(`${API_URL}/consultarPeliculas`);
@@ -6,7 +6,7 @@ export async function getPeliculas() {
 }
 
 export async function createPelicula(data) {
-    await fetch(`${API_URL}/newPelicula`, {
+    await fetch(`${API_URL}/registrarPeliculas`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(data)
@@ -14,7 +14,7 @@ export async function createPelicula(data) {
 }
 
 export async function updatePelicula(id, data) {
-    await fetch(`${API_URL}/updatePelicula/${id}`, {
+    await fetch(`${API_URL}/editarPelicula/${id}`, {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(data)
@@ -22,7 +22,7 @@ export async function updatePelicula(id, data) {
 }
 
 export async function deletePelicula(id) {
-    await fetch(`${API_URL}/deletePelicula/${id}`, {
+    await fetch(`${API_URL}/eliminarPelicula/${id}`, {
         method: "DELETE"
     });
 }

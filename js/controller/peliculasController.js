@@ -27,24 +27,29 @@ document.addEventListener("DOMContentLoaded", () => {
         const id = form.peliculaId.value;
 
         const data = {
-            peliculaTitulo: form.peliculaTitulo.value.trim(),
-            peliculaDirector: form.peliculaDirector.value.trim(),
-            peliculaGenero: form.peliculaGenero.value.trim(),
-            peliculaEstreno: form.peliculaEstreno.value.trim(),
-            peliculaDuracion: form.peliculaDuracion.value.trim(),
-            peliculaCreacion: form.peliculaCreacion.value.trim()
+            titulo: form.peliculaTitulo.value.trim(),
+            director: form.peliculaDirector.value.trim(),
+            genero: form.peliculaGenero.value.trim(),
+            anioEstreno: form.peliculaEstreno.value.trim(),
+            duracion: form.peliculaDuracion.value.trim(),
+            fecha_creacion: form.peliculaFecha.value
         };
+
 
         try {
             if (id) {
                 await updatePelicula(id, data);
+                loadPeliculas();
             } else {
                 await createPelicula(data);
+                console.log("hola");
+                loadPeliculas();
             }
             modal.hide()
         } catch (err) {
             console.error("Error al guardar la película: ", err);
         }
+
     });
 
     async function loadPeliculas() {
@@ -61,25 +66,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 const tr = document.createElement("tr");
 
                 const tdId = document.createElement("td");
-                tdId.textContent = pel.idPelicula;
+                tdId.textContent = pel.id;
 
                 const tdTitulo = document.createElement("td");
-                tdTitulo.textContent = pel.tituloPelicula;
+                tdTitulo.textContent = pel.titulo;
 
                 const tdDirector = document.createElement("td");
-                tdDirector.textContent = pel.directorPelicula;
+                tdDirector.textContent = pel.director;
 
                 const tdGenero = document.createElement("td");
-                tdGenero.textContent = pel.generoPelicula;
+                tdGenero.textContent = pel.genero;
 
                 const tdEstreno = document.createElement("td");
-                tdEstreno.textContent = pel.estrenoPelicula;
-                
+                tdEstreno.textContent = pel.anioEstreno;
+
                 const tdDuracion = document.createElement("td");
-                tdDuracion.textContent = pel.duracionPelicula;
+                tdDuracion.textContent = pel.duracion;
 
                 const tdFecha = document.createElement("td");
-                tdFecha.textContent = pel.fechaPelicula;
+                tdFecha.textContent = pel.fecha_creacion;
 
                 const tdBtns = document.createElement("td");
                 tdBtns.innerHTML = `
@@ -92,20 +97,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 `;
 
                 tdBtns.querySelector(".edit-btn").addEventListener("click", async () => {
-                    form.peliculaId.value = pel.idPelicula;
-                    form.peliculaTitulo.value = pel.tituloPelicula;
-                    form.peliculaDirector.value = pel.directorPelicula;
-                    form.peliculaGenero.value = pel.generoPelicula;
-                    form.peliculaEstreno.value = pel.estrenoPelicula;
-                    form.peliculaDuracion.value = pel.duracionPelicula;
-                    form.peliculaCreacion.value = pel.fechaPelicula;
+                    form.peliculaId.value = pel.id;
+                    form.peliculaTitulo.value = pel.titulo;
+                    form.peliculaDirector.value = pel.director;
+                    form.peliculaGenero.value = pel.genero;
+                    form.peliculaEstreno.value = pel.anioEstreno;
+                    form.peliculaDuracion.value = pel.duracion;
+                    form.peliculaFecha.value = pel.fecha_creacion;
                     lbModal.textContent = "Editar Película";
                     await loadPeliculas();
+                    modal.show();
                 });
 
                 tdBtns.querySelector(".delete-btn").addEventListener("click", async () => {
-                    if(confirm("¿Desea eliminar la película?")) {
-                        await deletePelicula(pel.idPelicula);
+                    if (confirm("¿Desea eliminar la película?")) {
+                        await deletePelicula(pel.id);
                         await loadPeliculas();
                     }
                 })
